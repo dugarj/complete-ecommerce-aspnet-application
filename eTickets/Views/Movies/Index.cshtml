@@ -17,7 +17,8 @@
                                     @item.Name
                                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                     {
-                    <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>}
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                    }
                                 </h5>
                             </p>
                         </div>
@@ -36,13 +37,16 @@
                                 <b>Status: </b>
                                 @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
                                 {
-                <span class="badge bg-success text-white">AVAILABLE</span> }
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                }
                                 else if (DateTime.Now > item.EndDate)
                                 {
-                <span class="badge bg-danger text-white">EXPIRED</span> }
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                }
                                 else
                                 {
-                <span class="badge bg-primary text-white">UPCOMING</span>}
+                                    <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
                             </p>
 
                         </div>
@@ -67,3 +71,5 @@
         </div>
     }
 </div>
+
+@await Html.PartialAsync("_CreateItem", "Movies") 
